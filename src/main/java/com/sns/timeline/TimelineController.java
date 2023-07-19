@@ -19,7 +19,7 @@ public class TimelineController {
 
 	@GetMapping("/timeline_view")
 	public String timelineView(Model model) {
-		// postlist   jpa
+		// postList   JPA
 		// post package
 		List<PostEntity> postList = postBO.getPostList();
 		
