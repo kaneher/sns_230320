@@ -1,6 +1,5 @@
 package com.sns.timeline;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,8 @@ public class TimelineController {
 		// postList   JPA
 		// post package
 		List<PostEntity> postList = postBO.getPostList();
+		// commentList => model
+		
 		
 		model.addAttribute("postList", postList);
 		model.addAttribute("view", "timeline/timeline");
