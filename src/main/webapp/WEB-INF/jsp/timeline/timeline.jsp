@@ -27,12 +27,12 @@
 		<%-- 타임라인 영역 --%>
 		<div class="timeline-box my-5">
 		
-			<c:forEach items="${postList}" var="post">
+			<c:forEach items="${cardList}" var="card">
 			<%-- 카드1 --%>
 			<div class="card border rounded mt-3">
 				<%-- 글쓴이, 더보기(삭제) --%>
 				<div class="p-2 d-flex justify-content-between">
-					<span class="font-weight-bold">${post.userId}</span>
+					<span class="font-weight-bold">${card.user.loginId}</span>
 
 					<%-- 더보기 ... --%>
 					<a href="#" class="more-btn">
@@ -42,7 +42,7 @@
 
 				<%-- 카드 이미지 --%>
 				<div class="card-img">
-					<img src="${post.imagePath}" class="w-100" alt="본문 이미지">
+					<img src="${card.post.imagePath}" class="w-100" alt="본문 이미지">
 				</div>
 
 				<%-- 좋아요 --%>
@@ -56,7 +56,7 @@
 				<%-- 글 --%>
 				<div class="card-post m-3">
 					<span class="font-weight-bold">글쓴이</span>
-					<span>${post.content}</span>
+					<span>${card.post.content}</span>
 				</div>
 
 				<%-- 댓글 제목 --%>
@@ -80,7 +80,7 @@
 					<%-- 댓글 쓰기 --%>
 					<div class="comment-write d-flex border-top mt-2">
 						<input type="text" class="form-control border-0 mr-2 comment-input" placeholder="댓글 달기"/> 
-						<button type="button" class="comment-btn btn btn-light" data-post-id="${post.id}">게시</button>
+						<button type="button" class="comment-btn btn btn-light" data-post-id="${card.post.id}">게시</button>
 					</div>
 				</div> <%--// 댓글 목록 끝 --%>
 			</div> <%--// 카드1 끝 --%>
@@ -170,22 +170,40 @@ $(document).ready(function () {
 	// 댓글 작성
 	$('.comment-btn').on('click', function() {
 		// alert("111");
-		let postId = $(this).data('post-id')
-		// 댓글 내용 가져오기
+		let postId = $(this).data('post-id');
+		// alert(postId);
+		
+		// 1) 댓글 내용 가져오기
+		/* let comment = $(this).siblings('input').val().trim();
+		alert(comment); */
+		
+		// 2) 댓글 내용 가져오기
+		let comment = $(this).prev().val().trim();
+		alert(comment);
 		
 		
 		// AJAX 데이터 전송
-		$.ajax({
+		/* $.ajax({
 			type:"post"
 			, url:"/comment/create"
-			, data:
-		});
+			, data:{"postId":postId, "content":content}
+		
+			, success:function(data) {
+				if (data.code == 1) {
+					location.reload(true);
+				}
+			}
+			
+			, error () {
+				
+			}
+		}); */
 		
 		// validation check
-		let comment = $('.comment-input').val().trim();
+		/* let comment = $('.comment-input').val().trim();
 		if (!comment) {
 			alert("댓글을 입력하세요");
-		}
+		} */
 	});
 });
 </script>
