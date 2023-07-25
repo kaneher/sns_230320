@@ -67,14 +67,17 @@
 				<%-- 댓글 목록 --%>
 				<div class="card-comment-list m-2">
 					<%-- 댓글 내용들 --%>
+					
 					<div class="card-comment m-1">
-						<span class="font-weight-bold">댓글쓴이</span>
-						<span>댓글 내용</span>
+						<span class="font-weight-bold">${commentView.user.loginId}</span>
+						<span>${commentView.comment.content}</span>
 
-						<%-- 댓글 삭제 버튼 --%>
+						<%-- 댓글 삭제 버튼-로그인 된 사람의 댓글일 때 삭제 버튼 노출 --%>
+						<c:if test="${userId == commentView.comment.userId}">
 						<a href="#" class="comment-del-btn">
 							<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
 						</a>
+						</c:if>
 					</div>
 
 					<%-- 댓글 쓰기 --%>
@@ -82,6 +85,7 @@
 						<input type="text" class="form-control border-0 mr-2 comment-input" placeholder="댓글 달기"/> 
 						<button type="button" class="comment-btn btn btn-light" data-post-id="${card.post.id}">게시</button>
 					</div>
+					
 				</div> <%--// 댓글 목록 끝 --%>
 			</div> <%--// 카드1 끝 --%>
 			</c:forEach>
