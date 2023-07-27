@@ -44,4 +44,20 @@ public class PostRestController {
 		result.put("result", "성공");
 		return result;
 	}
+	
+	@PostMapping("/delete")
+	public Map<String, Object> delete(
+			@RequestParam("postId") int postId,
+			HttpSession session) {
+		
+		int userId = (int)session.getAttribute("userId");
+		
+		// postBO delete
+		
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+	}
 }
